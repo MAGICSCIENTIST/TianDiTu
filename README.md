@@ -12,7 +12,7 @@ var typeMatrixSet = "c";  //"c"-地理坐标系，"w"-投影坐标系
 添加底图不需要参数，注记图层只需传入"ano"参数即可：
 ```javascript
 var baseLayer = new TianDiTuLayer();
-var annolayer = new TianDiTuLayer("ano");
+var annolayer = new TianDiTuLayer("ano",你的ticket);
 map.addLayer(baseLayer);
 map.addLayer(annolayer);
 ```
