@@ -5,9 +5,10 @@ define("TDT/TianDiTuLayer", [
     d = declare(TiledMapServiceLayer, {
         declaredClass: "TianDiTuLayer",
         _type: "",
-        constructor: function (type) {
+        constructor: function (type,tk) {
             // type为null, 则返回底图图层
             // type为"ano",则返回注记图层
+            this.tk = tk
             this._type = type;
             var cornerCoordinate = 20037508.3427892;
             this.baseUrl = 'http://t0.tianditu.com/';
@@ -85,9 +86,9 @@ define("TDT/TianDiTuLayer", [
             // 地图和注记图层的tileUrl分别用变量来设置，
             // 是为了在切换地图的时候，正常显示底图和注记
             if (this._type == "ano") {
-                tileUrl = "http://t0.tianditu.com/" + baseAnnoName + "_" + typeMatrixSet + "/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=" + baseAnnoName + "&STYLE=default&TILEMATRIXSET=" + typeMatrixSet + "&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=tiles";
+                tileUrl = "http://t0.tianditu.com/" + baseAnnoName + "_" + typeMatrixSet + "/wmts?tk="+ this.tk+"&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=" + baseAnnoName + "&STYLE=default&TILEMATRIXSET=" + typeMatrixSet + "&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=tiles";
             } else {
-                tileUrl = "http://t0.tianditu.com/" + baseTypeName + "_" + typeMatrixSet + "/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=" + baseTypeName + "&STYLE=default&TILEMATRIXSET=" + typeMatrixSet + "&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=tiles";
+                tileUrl = "http://t0.tianditu.com/" + baseTypeName + "_" + typeMatrixSet + "/wmts?tk="+ this.tk+"&SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=" + baseTypeName + "&STYLE=default&TILEMATRIXSET=" + typeMatrixSet + "&TILEMATRIX=" + level + "&TILEROW=" + row + "&TILECOL=" + col + "&FORMAT=tiles";
             }
             return tileUrl;
         }
